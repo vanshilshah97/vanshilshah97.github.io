@@ -129,3 +129,77 @@ name {
 span.highlight {
   background-color: #ffffd0;
 }
+
+/* ===== Dark Mode ===== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+  :root:not([data-theme="light"]) body {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+  }
+  :root:not([data-theme="light"]) a {
+    color: #5ea8ef;
+  }
+  :root:not([data-theme="light"]) a:focus,
+  :root:not([data-theme="light"]) a:hover {
+    color: #f0a050;
+  }
+  :root:not([data-theme="light"]) tr[bgcolor="#ffffd0"] {
+    background-color: #2a2a40 !important;
+  }
+  :root:not([data-theme="light"]) span.highlight {
+    background-color: #2a2a40;
+  }
+  :root:not([data-theme="light"]) img {
+    border-radius: 4px;
+  }
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+[data-theme="dark"] body {
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+}
+[data-theme="dark"] a {
+  color: #5ea8ef;
+}
+[data-theme="dark"] a:focus,
+[data-theme="dark"] a:hover {
+  color: #f0a050;
+}
+[data-theme="dark"] tr[bgcolor="#ffffd0"] {
+  background-color: #2a2a40 !important;
+}
+[data-theme="dark"] span.highlight {
+  background-color: #2a2a40;
+}
+[data-theme="dark"] img {
+  border-radius: 4px;
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  background: none;
+  border: 1.5px solid #888;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+#theme-toggle:hover {
+  opacity: 1;
+}

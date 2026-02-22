@@ -23,6 +23,28 @@
 
 
 <body>
+  <button id="theme-toggle" aria-label="Toggle dark mode"></button>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+      var btn = document.getElementById('theme-toggle');
+      function isDark() {
+        var t = document.documentElement.getAttribute('data-theme');
+        if (t) return t === 'dark';
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+      function update() { btn.textContent = isDark() ? '\u2600\uFE0F' : '\uD83C\uDF19'; }
+      update();
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', update);
+      btn.addEventListener('click', function() {
+        var next = isDark() ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        update();
+      });
+    })();
+  </script>
   <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
@@ -32,11 +54,11 @@
               <p style="text-align:center">
                 <name>Vanshil Shah</name>
               </p>
-              <p>  I am a graduate student at University of Pennsylvania specializing in Robotics. I completed my undergraduation from Nirma University, India where I majored in Mechanical Engineering. 
+              <p>  I am a Deep Learning Algorithm Engineer at <a href="https://www.nvidia.com/">NVIDIA</a>, where I build and ship production inference microservices for large language models and vision-language models. I hold an M.S.E. in Robotics from the University of Pennsylvania and a B.E. in Mechanical Engineering from Nirma University, India.
               </p>
-              <p>  My research interest lies within the areas of robot navigation, simultaneous localization and mapping (SLAM), computer vision and machine learning. 
+              <p>  My interests lie in large language models, deep learning, and high-performance inference — spanning custom backend optimizations in vLLM and TensorRT-LLM and end-to-end serving pipelines.
               </p>
-              <p> Previously,I was a research associate at Robert Bosch Center,Indian Institute of Science working on the problem of SLAM in dynamic environments. I also had the privilege to work at Robotics Research Center, IIIT-H with Professor Madhav Krishna on Autonomous Navigation. 
+              <p> Previously, I worked on 3D reconstruction and computer vision at <a href="https://quidient.com/">Quidient</a>, autonomous vehicle perception at <a href="https://www.ford.com/">Ford</a>, and SLAM research at the Indian Institute of Science.
               </p>
               <p>Feel free to check out my Resume and drop me an <a href="mailto:vanshilshah@gmail.com">e-mail</a> if you want to chat with me!
               </p>
@@ -54,48 +76,112 @@
             </td>
           </tr>
         </tbody></table>
+
+        <!-- ===== CURRENT EXPERIENCE ===== -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Experience</heading>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/nvidia_logo.png" width="252" height="168" style="object-fit:contain;">
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+                <papertitle>LLM &amp; VLM Inference Microservices</papertitle>
+              <br>
+              <em>Deep Learning Algorithm Engineer, <a href="https://www.nvidia.com/">NVIDIA</a>, Feb 2024 - Present</em>
+              <p></p>
+              <a href="https://build.nvidia.com/">NVIDIA API catalog</a>
+              /
+              <a href="https://docs.nvidia.com/nim/large-language-models/latest/introduction.html">NIM for LLMs</a>
+              /
+              <a href="https://docs.nvidia.com/nim/vision-language-models/latest/index.html">NIM for VLMs</a>
+              <p></p>
+              <p>Shipped 10+ production inference microservices for large language and vision-language models to enterprise customers, implementing custom backend changes in vLLM and TensorRT-LLM.</p>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/quidient_logo.png" width="252" height="168" style="object-fit:contain;">
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+                <papertitle>Generalized Scene Reconstruction</papertitle>
+              <br>
+              <em>Computer Vision Engineer, <a href="https://quidient.com/">Quidient</a>, July 2023 - Jan 2024</em>
+              <p></p>
+              <a href="https://quidient.com/">Quidient Reality&reg;</a>
+              <p></p>
+              <p>Developed core Generalized Scene Reconstruction (GSR) algorithms for Quidient Reality&reg;, producing relightable, millimeter-accurate 5D models from smartphone video. Built CUDA-enabled light physics module achieving 6x speedup in reconstruction.</p>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <!-- ===== INTERNSHIP ===== -->
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Internship</heading>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/disp_train_recon.gif" width="252" height="168">
+              <img src="images/train_recon.gif" width="252" height="168">
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+                <papertitle>Data Augmentation using Neural Radiance Field</papertitle>
+              <br>
+              <em>Perception Intern, Ford Motors (Autonomous Vehicles Lab), Summer 2022</em>
+              <p></p>
+              <a href="https://docs.google.com/presentation/d/1-Xl1N1cX8kN9WKvD6J6xtOZMcOceEpJQplnblSFGCw8/edit?usp=sharing">Slides</a>
+              /
+              <a href="https://drive.google.com/file/d/1IkFeCtegP0-DjHD9Qvlp1kF9uhXtobBz/view">Report</a>
+              <p></p>
+              <p>Created a neural radiance field based model for augmenting datasets for downstream CV tasks</p>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/drdo_robot_sentry.jpg" width="252" height="168">
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+                <papertitle>Robot navigation in outdoor environments</papertitle>
+              <br>
+              <em>Summer Intern, Center for Artificial Intelligence and Robotics, 2019</em>
+              <p></p>
+              <p>Deployed navigation stack on tracked robots used by Defence forces</p>
+            </td>
+          </tr>
+        </tbody></table>
+
+        <!-- ===== RESEARCH ===== -->
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
             <td style="padding:20px;width:100%;vertical-align:middle">
               <heading>Research</heading>
-              <!-- <p>
-                 My research interest lies within the areas of robot navigation, simultaneous localization and mapping (SLAM), computer vision and machine learning.
-              </p> -->
             </td>
           </tr>
-        
         </tbody></table>
-       <!--  <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-          <tr onmouseout="mip360_stop()" onmouseover="mip360_start()"  bgcolor="#ffffd0">
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <div class="one">
-                <div class="two" id='mip360_image'><video  width=100% height=200% muted autoplay loop>
-                <source src="images/dslr_square.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-                </video></div>
-                <img src='images/dslr.png' width="160">
-              </div>
-              <script type="text/javascript">
-                function mip360_start() {
-                  document.getElementById('mip360_image').style.opacity = "1";
-                }
-
-                function mip360_stop() {
-                  document.getElementById('mip360_image').style.opacity = "0";
-                }
-                mip360_stop()
-              </script>
-            </td>
-            </tbody></table> -->
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-                    <tr>
-    <td style="padding:20px;width:25%;vertical-align:middle">
-      <!-- <a href="https://openreview.net/pdf?id=R4E8wTUtxdl"> -->
-        <img src="images/dslr_clipped.gif" width="252" height="168">
-    <!-- </a> -->
-  </td>
-            
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/dslr_clipped.gif" width="252" height="168">
+            </td>
             <td style="padding:20px;width:75%;vertical-align:middle">
               <a href="https://ojs.aaai.org/index.php/AAAI/article/view/16278">
                 <papertitle>DSLR : Dynamic to Static LiDAR scan Reconstruction using adversarially trained autoencoder</papertitle>
@@ -104,35 +190,30 @@
               Prashant Kumar*,
               Sabyasachi Sahoo*,
               <strong>Vanshil Shah</strong>,
-              Vineetha Kondmeedi,Abhinav Jain, Akshaj Verma, Chiranjib Bhattacharyya, Vinay Viswanathan
+              Vineetha Kondmeedi, Abhinav Jain, Akshaj Verma, Chiranjib Bhattacharyya, Vinay Viswanathan
               <br>
               <em>Proceedings of the AAAI Conference on Artificial Intelligence</em>, 2021
               <p></p>
-              <!-- <br> -->
               <a href="https://dslrproject.github.io/dslr/">Project page</a>
               /
               <a href="https://arxiv.org/abs/2105.12774">Pre-print</a>
               /
-              <a href="https://www.youtube.com/watch?v=xj_JA_Xk-xM"> Results Video</a>
+              <a href="https://www.youtube.com/watch?v=xj_JA_Xk-xM">Results Video</a>
               /
               <a href="https://github.com/dslrproject/dslr/">Code</a>
               /
-               <a href="/images/DSLR_poster.pdf">Poster</a>
+              <a href="/images/DSLR_poster.pdf">Poster</a>
               <p></p>
               <p>Reconstructing dynamic LiDAR scans to static for improved SLAM performance</p>
             </td>
-          </tr> 
+          </tr>
+        </tbody></table>
 
-         </tbody></table>
-        
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-                    <tr>
-    <td style="padding:20px;width:25%;vertical-align:middle">
-      <!-- <a href="https://openreview.net/pdf?id=R4E8wTUtxdl"> -->
-        <img src="images/gazebo_ecc.gif" width="252" height="168">
-    <!-- </a> -->
-  </td>
-            
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/gazebo_ecc.gif" width="252" height="168">
+            </td>
             <td style="padding:20px;width:75%;vertical-align:middle">
               <a href="https://robotics.iiit.ac.in/publications/2020/non-holonomic-collision-avoidance-hilbert-space.html">
                 <papertitle>Non Holonomic Collision Avoidance under Non-Parametric Uncertainty: A Hilbert Space Approach</papertitle>
@@ -142,157 +223,30 @@
               <br>
               <em>Proceedings of European Control Conference</em>, 2021
               <p></p>
-              <!-- <br> -->
               <a href="https://robotics.iiit.ac.in/publications/2020/non-holonomic-collision-avoidance-hilbert-space.html">Project page</a>
               <p></p>
-              <p>Collision avoidance framework accounting uncertaininty of agent states without explicit model</p>
-            </td>
-          </tr> 
-        </tbody></table>
-
-
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-            <td style="padding:20px;width:100%;vertical-align:middle">
-              <heading>Experience</heading>
-              
+              <p>Collision avoidance framework accounting uncertainty of agent states without explicit model</p>
             </td>
           </tr>
-        
         </tbody></table>
 
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-                    <tr>
-    <td style="padding:20px;width:25%;vertical-align:middle">
-      <!-- <a href="https://openreview.net/pdf?id=R4E8wTUtxdl"> -->
-        <img src="images/disp_train_recon.gif" width="252" height="168">
-        <img src="images/train_recon.gif" width="252" height="168">
-    <!-- </a> -->
-  </td>
-            
-            <td style="padding:20px;width:75%;vertical-align:middle">
-            <!--   <a href="http://jonbarron.info/mipnerf360"> -->
-                <papertitle>Data Augmentation using Neural Radiance Field</papertitle>
-              <!-- </a> -->
-              <br>
-              <em>Perception Intern, Ford Motors (Autonomous vechicles Lab), Summer 2022</em>
-              <!-- <em>arXiv</em>, 2021 -->
-              <p></p>
-              <!-- <br> -->
-               <a href="https://docs.google.com/presentation/d/1-Xl1N1cX8kN9WKvD6J6xtOZMcOceEpJQplnblSFGCw8/edit?usp=sharing">Slides</a>
-               /
-              <a href="https://drive.google.com/file/d/1IkFeCtegP0-DjHD9Qvlp1kF9uhXtobBz/view">Report</a>
-              /
-              <p></p>
-              <p> Created a neural radiance field based model for augmenting datasets for downstream CV tasks</p>
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <img src="images/orb_slam.png" width="252" height="168">
             </td>
-          </tr> 
-        </tbody></table>
-
-
-        
-
-
-
-
-
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-                    <tr>
-    <td style="padding:20px;width:25%;vertical-align:middle">
-      <!-- <a href="https://openreview.net/pdf?id=R4E8wTUtxdl"> -->
-        <!-- <img src="images/eyantrasim.gif" width="252" height="168"> -->
-        <img src="images/orb_slam.png" width="252" height="168">
-    <!-- </a> -->
-  </td>
-            
             <td style="padding:20px;width:75%;vertical-align:middle">
-              <!-- <a href="http://jonbarron.info/mipnerf360"> -->
                 <papertitle>Benchmarking visual SLAM algorithms for degraded environments</papertitle>
-              <!-- </a> -->
-              <!-- <br> -->
-              <!-- <strong>Jonathan T. Barron</strong>, -->
-              <!-- <a href="https://bmild.github.io/">Ben Mildenhall</a>, -->
-              <!-- <a href="https://scholar.harvard.edu/dorverbin/home">Dor Verbin</a>, -->
-              <!-- <a href="https://pratulsrinivasan.github.io/">Pratul Srinivasan</a>, -->
-              <!-- <a href="https://phogzone.com/">Peter Hedman</a> -->
               <br>
               <em>Research Associate, IISc</em>
-              <!-- <br> -->
               <p></p>
               <a href="https://www.youtube.com/watch?v=zNUWp93c8m4">Video</a>
               /
               <a href="https://cps.iisc.ac.in/research/mbzirc/">Competition details</a>
-              <!-- <a href="https://arxiv.org/abs/2111.12077">arXiv</a>
-              / -->
               <p></p>
               <p>Worked on enabling drone autonomy in smoke occluded environments for MBZIRC 2020</p>
             </td>
-          </tr> 
-        </tbody></table>
-
-       
-
-
-         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-                    <tr>
-    <td style="padding:20px;width:25%;vertical-align:middle">
-      <!-- <a href="https://openreview.net/pdf?id=R4E8wTUtxdl"> -->
-        <!-- <img src="images/eyantrasim.gif" width="252" height="168"> -->
-        <img src="images/drdo_robot_sentry.jpg" width="252" height="168">
-    <!-- </a> -->
-  </td>
-            
-            <td style="padding:20px;width:75%;vertical-align:middle">
-              <!-- <a href="http://jonbarron.info/mipnerf360"> -->
-                <papertitle>Robot navigation in outdoor environments</papertitle>
-              <!-- </a> -->
-              <!-- <br>
-              <strong>Jonathan T. Barron</strong>,
-              <a href="https://bmild.github.io/">Ben Mildenhall</a>,
-              <a href="https://scholar.harvard.edu/dorverbin/home">Dor Verbin</a>,
-              <a href="https://pratulsrinivasan.github.io/">Pratul Srinivasan</a>,
-              <a href="https://phogzone.com/">Peter Hedman</a>
-              <br> -->
-              <br>
-              <em>Summer Intern, Center for Artificial Intelligence and Robotics, 2019</em>
-              <!-- <br> -->
-              <!-- <a href="http://jonbarron.info/mipnerf360">project page</a> -->
-              <!-- / -->
-              <!-- <a href="https://arxiv.org/abs/2111.12077">arXiv</a> -->
-              <!-- / -->
-              <!-- <a href="https://youtu.be/zBSH-k9GbV4">video</a> -->
-              <p></p>
-              <p>Deployed navigation stack on tracked robots used by Defence forces</p>
-            </td>
-          </tr> 
-        </tbody></table>
-
-
-                <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-                    <tr>
-    <td style="padding:20px;width:25%;vertical-align:middle">
-      <!-- <a href="https://openreview.net/pdf?id=R4E8wTUtxdl"> -->
-        <img src="images/underwater_robot.jpg" width="252" height="168">
-        <img src="images/pantilt.gif" width="252" height="168">
-    <!-- </a> -->
-  </td>
-            
-            <td style="padding:20px;width:75%;vertical-align:middle">
-              <!-- <a href="http://jonbarron.info/mipnerf360"> -->
-                <papertitle>Underwater Tank Cleaning Robot</papertitle>
-              <br>
-              <em>Summer Intern, Atharva Robotics, 2018</em>
-              <p></p>
-              <!-- <br> -->
-              <!-- <a href="http://jonbarron.info/mipnerf360">project page</a>
-              /
-              <a href="https://arxiv.org/abs/2111.12077">arXiv</a> -->
-              <!-- / -->
-              <a href="https://youtu.be/0BLEo4zk6M8">Video</a>
-              <p></p>
-              <p>Pan and tilt module for uniform spraying of water disinfectants</p>
-            </td>
-          </tr> 
+          </tr>
         </tbody></table>
 
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
